@@ -10,7 +10,7 @@
 
 /* Título dentro de cada semestre */
 .semester-title{
-  @apply text-center text-lg font-semibold mb-4 text-rose-900;
+  @apply text-center text-lg font-sem   ibold mb-4 text-rose-900;
 }
 
 /* Estado aprobado (no dependemos de @apply para funcionar sin procesador) */
@@ -39,4 +39,27 @@
 .course:hover{
   background:rgba(255,154,179,.25); /* law-pink-dark 25 % */
   transform:translateY(-1px);
+}
+/* ----- Footer minimal y botón “casi invisible” ----- */
+.footer-math{
+  text-align:center;
+  padding:1.5rem 0;
+  font-size:.85rem;          /* discreto */
+}
+
+.btn-math{
+  color:#6b7280;             /* gray-500 */
+  text-decoration:none;
+  border-bottom:1px dashed transparent;
+  transition:all .2s ease;
+}
+.btn-math:hover{
+  color:#b91c1c;             /* rose-700 */
+  border-color:currentColor; /* subrayado sutil al pasar el mouse */
+}
+
+/* Pequeño ajuste oscuro si usas modo dark de Tailwind */
+@media (prefers-color-scheme: dark){
+  .btn-math{ color:#9ca3af; }          /* gray-400 */
+  .btn-math:hover{ color:#f472b6; }    /* pink-400 */
 }
