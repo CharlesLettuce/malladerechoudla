@@ -2,169 +2,225 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Malla Curricular Derecho</title>
+  <title>Malla Derecho Interactiva</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    :root {
+      --pink-light: #ffeef5;
+      --pink-medium: #ffccd9;
+      --pink-dark: #ff9ab3;
+      --gray-passed: #e0e0e0;
+    }
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f6f8;
       margin: 0;
-      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: var(--pink-light);
     }
 
-    h1 {
+    header {
       text-align: center;
-      color: #2c3e50;
+      padding: 1rem;
+      background: var(--pink-medium);
+      font-size: 1.6rem;
+      font-weight: 700;
     }
 
-    .malla {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .semestre {
-      background-color: #ffffff;
-      border: 1px solid #dcdcdc;
-      border-radius: 8px;
-      padding: 10px;
-      min-height: 200px;
+    .container {
       display: flex;
-      flex-direction: column;
-      justify-content: start;
+      gap: 1rem;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 1rem;
+      overflow-x: auto;
     }
 
-    .semestre h3 {
-      font-size: 16px;
-      color: #34495e;
-      margin-bottom: 8px;
+    .semester {
+      background: var(--pink-medium);
+      border-radius: 10px;
+      padding: 1rem;
+      min-width: 200px;
+      flex-shrink: 0;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
-    .ramo {
-      font-size: 14px;
-      margin: 3px 0;
-      display: flex;
-      align-items: center;
+    .semester h3 {
+      margin-top: 0;
+      text-align: center;
+      font-size: 1.1rem;
     }
 
-    .ramo::before {
-      content: "";
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      margin-right: 6px;
-      border-radius: 50%;
+    .course {
+      background: var(--pink-dark);
+      border-radius: 6px;
+      padding: 6px;
+      margin: 4px 0;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.2s, background 0.2s, color 0.2s;
     }
 
-    .blue::before { background-color: #1e3799; }
-    .red::before { background-color: #e74c3c; }
-    .gray::before { background-color: #7f8c8d; }
-    .yellow::before { background-color: #f1c40f; }
-
-    @media (max-width: 1024px) {
-      .malla {
-        grid-template-columns: repeat(2, 1fr);
-      }
+    .course:hover {
+      transform: scale(1.03);
     }
 
-    @media (max-width: 768px) {
-      .malla {
-        grid-template-columns: 1fr;
-      }
+    .course.passed {
+      background: var(--gray-passed);
+      color: #666;
+      text-decoration: line-through;
     }
   </style>
 </head>
 <body>
-  <h1>Malla Curricular Derecho</h1>
-  <div class="malla">
-    <!-- Año 1 -->
-    <div class="semestre">
-      <h3>Año 1 - Semestre 1</h3>
-      <div class="ramo gray">Taller de Escritura</div>
-      <div class="ramo blue">Derecho Político</div>
-      <div class="ramo red">Introducción al Derecho Privado</div>
-      <div class="ramo blue">Historia de las Instituciones Jurídicas</div>
-      <div class="ramo blue">Introducción al Derecho</div>
-    </div>
-    <div class="semestre">
-      <h3>Año 1 - Semestre 2</h3>
-      <div class="ramo gray">Expresión Oral y Argumentación</div>
-      <div class="ramo red">Políticas de Equidad y Género</div>
-      <div class="ramo red">Derecho Constitucional Orgánico</div>
-      <div class="ramo red">Acto Jurídico</div>
-      <div class="ramo blue">Historia Institucional de Chile</div>
+  <header id="userHeader">Malla Derecho</header>
+
+  <div class="container">
+    <!-- Semestre 1 -->
+    <div class="semester" id="sem1"><h3>Semestre 1</h3>
+      <div class="course" data-id="c1">Taller de Escritura</div>
+      <div class="course" data-id="c2">Derecho Político</div>
+      <div class="course" data-id="c3">Introducción al Derecho Privado</div>
+      <div class="course" data-id="c4">Historia de las Instituciones Jurídicas</div>
+      <div class="course" data-id="c5">Introducción al Derecho</div>
     </div>
 
-    <!-- Año 2 -->
-    <div class="semestre">
-      <h3>Año 2 - Semestre 3</h3>
-      <div class="ramo red">Sustentabilidad y Medio Ambiente</div>
-      <div class="ramo red">Introducción a la Economía</div>
-      <div class="ramo red">Derechos Fundamentales</div>
-      <div class="ramo red">Bienes</div>
-      <div class="ramo red">Fundamentos del Derecho Procesal</div>
-    </div>
-    <div class="semestre">
-      <h3>Año 2 - Semestre 4</h3>
-      <div class="ramo red">Fundamentos del Derecho Penal</div>
-      <div class="ramo red">Acciones Constitucionales</div>
-      <div class="ramo red">Derecho Administrativo I</div>
-      <div class="ramo red">Obligaciones</div>
-      <div class="ramo red">Normas Comunes a todo Procedimiento</div>
+    <!-- Semestre 2 -->
+    <div class="semester" id="sem2"><h3>Semestre 2</h3>
+      <div class="course" data-id="c6">Expresión Oral y Argumentación</div>
+      <div class="course" data-id="c7">Políticas de Equidad y Género</div>
+      <div class="course" data-id="c8">Derecho Constitucional Orgánico</div>
+      <div class="course" data-id="c9">Acto Jurídico</div>
+      <div class="course" data-id="c10">Historia Institucional de Chile</div>
     </div>
 
-    <!-- Año 3 -->
-    <div class="semestre">
-      <h3>Año 3 - Semestre 5</h3>
-      <div class="ramo red">Participación Criminal y Penal</div>
-      <div class="ramo red">Derecho del Trabajo I</div>
-      <div class="ramo red">Derecho Administrativo II</div>
-      <div class="ramo red">Responsabilidad</div>
-      <div class="ramo red">Procedimientos Civiles</div>
-    </div>
-    <div class="semestre">
-      <h3>Año 3 - Semestre 6</h3>
-      <div class="ramo red">Estudio de los Delitos</div>
-      <div class="ramo red">Derecho del Trabajo II</div>
-      <div class="ramo red">Derecho Internacional Público</div>
-      <div class="ramo red">Contratos</div>
-      <div class="ramo red">Recursos Procesales y Juicio Ejecutivo</div>
+    <!-- Semestre 3 -->
+    <div class="semester" id="sem3"><h3>Semestre 3</h3>
+      <div class="course" data-id="c11">Sustentabilidad y Medio Ambiente</div>
+      <div class="course" data-id="c12">Introducción a la Economía</div>
+      <div class="course" data-id="c13">Derechos Fundamentales</div>
+      <div class="course" data-id="c14">Bienes</div>
+      <div class="course" data-id="c15">Fundamentos del Derecho Procesal</div>
     </div>
 
-    <!-- Año 4 -->
-    <div class="semestre">
-      <h3>Año 4 - Semestre 7</h3>
-      <div class="ramo red">Proceso Penal</div>
-      <div class="ramo red">Derecho Económico</div>
-      <div class="ramo red">Derecho Comercial I</div>
-      <div class="ramo red">Derecho de Familia</div>
-      <div class="ramo blue">Solución Alternativa de Conflictos</div>
-    </div>
-    <div class="semestre">
-      <h3>Año 4 - Semestre 8</h3>
-      <div class="ramo gray">Multiculturalidad y Migraciones</div>
-      <div class="ramo red">Taller de Litigación</div>
-      <div class="ramo red">Derecho Comercial II</div>
-      <div class="ramo red">Derecho Sucesorio</div>
-      <div class="ramo red">Procedimientos de Familia</div>
+    <!-- Semestre 4 -->
+    <div class="semester" id="sem4"><h3>Semestre 4</h3>
+      <div class="course" data-id="c16">Fund. Derecho Penal y Teoría del Delito</div>
+      <div class="course" data-id="c17">Acciones Constitucionales</div>
+      <div class="course" data-id="c18">Derecho Administrativo I</div>
+      <div class="course" data-id="c19">Obligaciones</div>
+      <div class="course" data-id="c20">Normas Comunes a todo Procedimiento</div>
     </div>
 
-    <!-- Año 5 -->
-    <div class="semestre">
-      <h3>Año 5 - Semestre 9</h3>
-      <div class="ramo gray">Ética</div>
-      <div class="ramo red">Derecho Tributario I</div>
-      <div class="ramo blue">Filosofía del Derecho</div>
-      <div class="ramo blue">Seminario Integración Derecho Privado</div>
-      <div class="ramo yellow">Clínica I</div>
+    <!-- Semestre 5 -->
+    <div class="semester" id="sem5"><h3>Semestre 5</h3>
+      <div class="course" data-id="c21">Participación Criminal y Penal</div>
+      <div class="course" data-id="c22">Derecho del Trabajo I</div>
+      <div class="course" data-id="c23">Derecho Administrativo II</div>
+      <div class="course" data-id="c24">Responsabilidad</div>
+      <div class="course" data-id="c25">Procedimientos Civiles</div>
     </div>
-    <div class="semestre">
-      <h3>Año 5 - Semestre 10</h3>
-      <div class="ramo red">Derecho Tributario II</div>
-      <div class="ramo red">Taller de Investigación Jurídica</div>
-      <div class="ramo blue">Seminario Integración Derecho Público</div>
-      <div class="ramo yellow">Clínica II</div>
+
+    <!-- Semestre 6 -->
+    <div class="semester" id="sem6"><h3>Semestre 6</h3>
+      <div class="course" data-id="c26">Estudio de los Delitos</div>
+      <div class="course" data-id="c27">Derecho del Trabajo II</div>
+      <div class="course" data-id="c28">Derecho Internacional Público</div>
+      <div class="course" data-id="c29">Contratos</div>
+      <div class="course" data-id="c30">Recursos Procesales y Juicio Ejecutivo</div>
+    </div>
+
+    <!-- Semestre 7 -->
+    <div class="semester" id="sem7"><h3>Semestre 7</h3>
+      <div class="course" data-id="c31">Proceso Penal</div>
+      <div class="course" data-id="c32">Derecho Económico</div>
+      <div class="course" data-id="c33">Derecho Comercial I</div>
+      <div class="course" data-id="c34">Derecho de Familia</div>
+      <div class="course" data-id="c35">Solución Alternativa de Conflictos</div>
+    </div>
+
+    <!-- Semestre 8 -->
+    <div class="semester" id="sem8"><h3>Semestre 8</h3>
+      <div class="course" data-id="c36">Multiculturalidad y Migraciones</div>
+      <div class="course" data-id="c37">Taller de Litigación</div>
+      <div class="course" data-id="c38">Derecho Comercial II</div>
+      <div class="course" data-id="c39">Derecho Sucesorio</div>
+      <div class="course" data-id="c40">Procedimientos de Familia</div>
+    </div>
+
+    <!-- Semestre 9 -->
+    <div class="semester" id="sem9"><h3>Semestre 9</h3>
+      <div class="course" data-id="c41">Ética</div>
+      <div class="course" data-id="c42">Derecho Tributario I</div>
+      <div class="course" data-id="c43">Filosofía del Derecho</div>
+      <div class="course" data-id="c44">Seminario de Integración Derecho Privado</div>
+      <div class="course" data-id="c45">Clínica I</div>
+    </div>
+
+    <!-- Semestre 10 -->
+    <div class="semester" id="sem10"><h3>Semestre 10</h3>
+      <div class="course" data-id="c46">Derecho Tributario II</div>
+      <div class="course" data-id="c47">Taller de Investigación Jurídica</div>
+      <div class="course" data-id="c48">Seminario de Integración Derecho Público</div>
+      <div class="course" data-id="c49">Clínica II</div>
     </div>
   </div>
+
+  <script>
+    // ---------------------- cookie helpers ----------------------
+    function setCookie(name, value, days = 3650) {
+      const d = new Date();
+      d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+      const expires = "expires=" + d.toUTCString();
+      document.cookie = name + "=" + encodeURIComponent(value) + ";" + expires + ";path=/";
+    }
+
+    function getCookie(name) {
+      const cname = name + "=";
+      const decodedCookie = decodeURIComponent(document.cookie);
+      const ca = decodedCookie.split(';');
+      for (let c of ca) {
+        while (c.charAt(0) === ' ') c = c.substring(1);
+        if (c.indexOf(cname) === 0) return c.substring(cname.length, c.length);
+      }
+      return "";
+    }
+
+    // ---------------------- main ----------------------
+    document.addEventListener('DOMContentLoaded', () => {
+      // Obtener o preguntar nombre de usuario
+      let userName = getCookie('userName');
+      if (!userName) {
+        userName = prompt('¡Hola! ¿Cómo te llamas?');
+        if (!userName) userName = 'Estudiante';
+        setCookie('userName', userName);
+      }
+      document.getElementById('userHeader').textContent = 'Malla Derecho – ' + userName;
+
+      // Cargar ramos aprobados desde las cookies
+      let passed = [];
+      const stored = getCookie('passedCourses');
+      if (stored) {
+        try { passed = JSON.parse(stored); } catch (e) { passed = []; }
+      }
+
+      // Añadir manejadores de eventos a cada ramo
+      document.querySelectorAll('.course').forEach(el => {
+        const id = el.dataset.id;
+        if (passed.includes(id)) {
+          el.classList.add('passed');
+        }
+
+        el.addEventListener('click', () => {
+          el.classList.toggle('passed');
+
+          if (el.classList.contains('passed')) {
+            if (!passed.includes(id)) passed.push(id);
+          } else {
+            passed = passed.filter(i => i !== id);
+          }
+          setCookie('passedCourses', JSON.stringify(passed));
+        });
+      });
+    });
+  </script>
 </body>
 </html>
