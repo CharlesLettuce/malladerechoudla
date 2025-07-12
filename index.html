@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Malla Curricular Derecho</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    .malla {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .semestre {
+      background-color: #ffffff;
+      border: 1px solid #dcdcdc;
+      border-radius: 8px;
+      padding: 10px;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+    }
+
+    .semestre h3 {
+      font-size: 16px;
+      color: #34495e;
+      margin-bottom: 8px;
+    }
+
+    .ramo {
+      font-size: 14px;
+      margin: 3px 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .ramo::before {
+      content: "";
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin-right: 6px;
+      border-radius: 50%;
+    }
+
+    .blue::before { background-color: #1e3799; }
+    .red::before { background-color: #e74c3c; }
+    .gray::before { background-color: #7f8c8d; }
+    .yellow::before { background-color: #f1c40f; }
+
+    @media (max-width: 1024px) {
+      .malla {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .malla {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Malla Curricular Derecho</h1>
+  <div class="malla">
+    <!-- Año 1 -->
+    <div class="semestre">
+      <h3>Año 1 - Semestre 1</h3>
+      <div class="ramo gray">Taller de Escritura</div>
+      <div class="ramo blue">Derecho Político</div>
+      <div class="ramo red">Introducción al Derecho Privado</div>
+      <div class="ramo blue">Historia de las Instituciones Jurídicas</div>
+      <div class="ramo blue">Introducción al Derecho</div>
+    </div>
+    <div class="semestre">
+      <h3>Año 1 - Semestre 2</h3>
+      <div class="ramo gray">Expresión Oral y Argumentación</div>
+      <div class="ramo red">Políticas de Equidad y Género</div>
+      <div class="ramo red">Derecho Constitucional Orgánico</div>
+      <div class="ramo red">Acto Jurídico</div>
+      <div class="ramo blue">Historia Institucional de Chile</div>
+    </div>
+
+    <!-- Año 2 -->
+    <div class="semestre">
+      <h3>Año 2 - Semestre 3</h3>
+      <div class="ramo red">Sustentabilidad y Medio Ambiente</div>
+      <div class="ramo red">Introducción a la Economía</div>
+      <div class="ramo red">Derechos Fundamentales</div>
+      <div class="ramo red">Bienes</div>
+      <div class="ramo red">Fundamentos del Derecho Procesal</div>
+    </div>
+    <div class="semestre">
+      <h3>Año 2 - Semestre 4</h3>
+      <div class="ramo red">Fundamentos del Derecho Penal</div>
+      <div class="ramo red">Acciones Constitucionales</div>
+      <div class="ramo red">Derecho Administrativo I</div>
+      <div class="ramo red">Obligaciones</div>
+      <div class="ramo red">Normas Comunes a todo Procedimiento</div>
+    </div>
+
+    <!-- Año 3 -->
+    <div class="semestre">
+      <h3>Año 3 - Semestre 5</h3>
+      <div class="ramo red">Participación Criminal y Penal</div>
+      <div class="ramo red">Derecho del Trabajo I</div>
+      <div class="ramo red">Derecho Administrativo II</div>
+      <div class="ramo red">Responsabilidad</div>
+      <div class="ramo red">Procedimientos Civiles</div>
+    </div>
+    <div class="semestre">
+      <h3>Año 3 - Semestre 6</h3>
+      <div class="ramo red">Estudio de los Delitos</div>
+      <div class="ramo red">Derecho del Trabajo II</div>
+      <div class="ramo red">Derecho Internacional Público</div>
+      <div class="ramo red">Contratos</div>
+      <div class="ramo red">Recursos Procesales y Juicio Ejecutivo</div>
+    </div>
+
+    <!-- Año 4 -->
+    <div class="semestre">
+      <h3>Año 4 - Semestre 7</h3>
+      <div class="ramo red">Proceso Penal</div>
+      <div class="ramo red">Derecho Económico</div>
+      <div class="ramo red">Derecho Comercial I</div>
+      <div class="ramo red">Derecho de Familia</div>
+      <div class="ramo blue">Solución Alternativa de Conflictos</div>
+    </div>
+    <div class="semestre">
+      <h3>Año 4 - Semestre 8</h3>
+      <div class="ramo gray">Multiculturalidad y Migraciones</div>
+      <div class="ramo red">Taller de Litigación</div>
+      <div class="ramo red">Derecho Comercial II</div>
+      <div class="ramo red">Derecho Sucesorio</div>
+      <div class="ramo red">Procedimientos de Familia</div>
+    </div>
+
+    <!-- Año 5 -->
+    <div class="semestre">
+      <h3>Año 5 - Semestre 9</h3>
+      <div class="ramo gray">Ética</div>
+      <div class="ramo red">Derecho Tributario I</div>
+      <div class="ramo blue">Filosofía del Derecho</div>
+      <div class="ramo blue">Seminario Integración Derecho Privado</div>
+      <div class="ramo yellow">Clínica I</div>
+    </div>
+    <div class="semestre">
+      <h3>Año 5 - Semestre 10</h3>
+      <div class="ramo red">Derecho Tributario II</div>
+      <div class="ramo red">Taller de Investigación Jurídica</div>
+      <div class="ramo blue">Seminario Integración Derecho Público</div>
+      <div class="ramo yellow">Clínica II</div>
+    </div>
+  </div>
+</body>
+</html>
