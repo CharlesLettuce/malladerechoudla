@@ -4,67 +4,36 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Malla Interactiva Derecho UChile</title>
-  <meta name="description" content="Explora la malla curricular interactiva de Derecho en la Universidad de Chile. Marca tus ramos aprobados, guarda tu progreso y disfruta de un diseño responsive con TailwindCSS." />
+  <meta name="description"
+        content="Explora la malla curricular interactiva de Derecho en la Universidad de Chile. Marca tus ramos aprobados y guarda tu progreso." />
 
-  <!-- Tailwind CSS (JIT CDN) -->
+  <!-- Configuración de Tailwind antes de cargar la CDN -->
+  <script src="tailwind-config.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    /* Extensión de paleta corporativa */
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            "law-pink-light": "#ffeef5",
-            "law-pink-medium": "#ffccd9",
-            "law-pink-dark": "#ff9ab3",
-            "law-gray-passed": "#d1d5db" // gray‑300
-          },
-          fontFamily: {
-            pop: ['Poppins', 'sans-serif']
-          }
-        }
-      }
-    };
-  </script>
 
-  <!-- Tipografía headline -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
-
-  <!-- Confetti library para celebración -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-  <!-- Estilos extra (estado passed, glass y 3D) -->
-  <style>
-    /* estado aprobado sin @apply (funciona directo en navegador) */
-    .passed{
-      background-color:#d1d5db; /* gray‑300 */
-      color:#4b5563;            /* gray‑600 */
-      text-decoration:line-through;
-      font-style:italic;
-      box-shadow:inset 0 0 4px rgba(0,0,0,0.1);
-    }
-    /* Glass effect card */
-    .glass{
-      backdrop-filter: blur(4px) saturate(150%);
-      background: rgba(255, 204, 217, 0.55);
-    }
-  </style>
+  <!-- Hoja de estilos propia -->
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="bg-law-pink-light min-h-screen text-[15px] sm:text-base font-sans">
-  <!-- ☝️ Cabecera con saludo personalizado -->
-  <header id="userHeader" class="sticky top-0 z-10 w-full text-center bg-law-pink-medium py-4 text-2xl font-pop font-bold shadow-lg">
+
+  <!-- Cabecera con saludo personalizado -->
+  <header id="userHeader"
+          class="sticky top-0 z-10 w-full text-center bg-law-pink-medium py-4 text-2xl font-pop font-bold shadow-lg">
     Malla Derecho
   </header>
 
-  <!-- 📚 Contenedor principal (scroll horizontal en móvil, wrap en desktop) -->
-  <main class="flex gap-6 p-6 overflow-x-auto scroll-smooth snap-x snap-mandatory md:flex-wrap md:justify-center">
+  <!-- Contenedor principal: grilla responsiva -->
+  <main class="grid gap-6 p-6
+               sm:grid-cols-2
+               lg:grid-cols-3
+               xl:grid-cols-4">
 
     <!-- ========== Semestres ========== -->
-    <!-- Helper para generar columnas: cada .semester contiene cursos -->
-
+    <!-- Cada .semester representa una tarjeta-columna -->
     <!-- ############ SEMESTRE 1 ############ -->
-    <section class="semester snap-center glass rounded-2xl p-5 w-72 flex-shrink-0 shadow-xl hover:shadow-2xl transition md:w-64 lg:w-80">
-      <h3 class="text-center text-lg font-semibold mb-3 text-rose-900">Semestre 1</h3>
+    <section class="semester glass rounded-2xl p-6 shadow-xl hover:shadow-2xl transition">
+      <h3 class="semester-title">Semestre 1</h3>
       <div class="course" data-id="c1">Taller de Escritura</div>
       <div class="course" data-id="c2">Derecho Político</div>
       <div class="course" data-id="c3">Introducción al Derecho Privado</div>
@@ -72,9 +41,8 @@
       <div class="course" data-id="c5">Introducción al Derecho</div>
     </section>
 
-    <!-- ############ SEMESTRE 2 ############ -->
-    <section class="semester snap-center glass rounded-2xl p-5 w-72 flex-shrink-0 shadow-xl hover:shadow-2xl transition md:w-64 lg:w-80">
-      <h3 class="text-center text-lg font-semibold mb-3 text-rose-900">Semestre 2</h3>
+    <section class="semester glass rounded-2xl p-6 shadow-xl hover:shadow-2xl transition">
+      <h3 class="semester-title">Semestre 2</h3>
       <div class="course" data-id="c6">Expresión Oral y Argumentación</div>
       <div class="course" data-id="c7">Políticas de Equidad y Género</div>
       <div class="course" data-id="c8">Derecho Constitucional Orgánico</div>
@@ -83,8 +51,8 @@
     </section>
 
     <!-- ############ SEMESTRE 3 ############ -->
-    <section class="semester snap-center glass rounded-2xl p-5 w-72 flex-shrink-0 shadow-xl hover:shadow-2xl transition md:w-64 lg:w-80">
-      <h3 class="text-center text-lg font-semibold mb-3 text-rose-900">Semestre 3</h3>
+    <section class="semester glass rounded-2xl p-6 shadow-xl hover:shadow-2xl transition">
+      <h3 class="semester-title">Semestre 3</h3>
       <div class="course" data-id="c11">Sustentabilidad y Medio Ambiente</div>
       <div class="course" data-id="c12">Introducción a la Economía</div>
       <div class="course" data-id="c13">Derechos Fundamentales</div>
@@ -93,8 +61,8 @@
     </section>
 
     <!-- ############ SEMESTRE 4 ############ -->
-    <section class="semester snap-center glass rounded-2xl p-5 w-72 flex-shrink-0 shadow-xl hover:shadow-2xl transition md:w-64 lg:w-80">
-      <h3 class="text-center text-lg font-semibold mb-3 text-rose-900">Semestre 4</h3>
+    <section class="semester glass rounded-2xl p-6 shadow-xl hover:shadow-2xl transition">
+      <h3 class="semester-title">Semestre 4</h3>
       <div class="course" data-id="c16">Fund. Derecho Penal y Teoría del Delito</div>
       <div class="course" data-id="c17">Acciones Constitucionales</div>
       <div class="course" data-id="c18">Derecho Administrativo I</div>
@@ -103,8 +71,8 @@
     </section>
 
     <!-- ############ SEMESTRE 5 ############ -->
-    <section class="semester snap-center glass rounded-2xl p-5 w-72 flex-shrink-0 shadow-xl hover:shadow-2xl transition md:w-64 lg:w-80">
-      <h3 class="text-center text-lg font-semibold mb-3 text-rose-900">Semestre 5</h3>
+    <section class="semester glass rounded-2xl p-6 shadow-xl hover:shadow-2xl transition">
+      <h3 class="semester-title">Semestre 5</h3>
       <div class="course" data-id="c21">Participación Criminal y Penal</div>
       <div class="course" data-id="c22">Derecho del Trabajo I</div>
       <div class="course" data-id="c23">Derecho Administrativo II</div>
@@ -113,8 +81,8 @@
     </section>
 
     <!-- ############ SEMESTRE 6 ############ -->
-    <section class="semester snap-center glass rounded-2xl p-5 w-72 flex-shrink-0 shadow-xl hover:shadow-2xl transition md:w-64 lg:w-80">
-      <h3 class="text-center text-lg font-semibold mb-3 text-rose-900">Semestre 6</h3>
+    <section class="semester glass rounded-2xl p-6 shadow-xl hover:shadow-2xl transition">
+      <h3 class="semester-title">Semestre 6</h3>
       <div class="course" data-id="c26">Estudio de los Delitos</div>
       <div class="course" data-id="c27">Derecho del Trabajo II</div>
       <div class="course" data-id="c28">Derecho Internacional Público</div>
@@ -123,8 +91,8 @@
     </section>
 
     <!-- ############ SEMESTRE 7 ############ -->
-    <section class="semester snap-center glass rounded-2xl p-5 w-72 flex-shrink-0 shadow-xl hover:shadow-2xl transition md:w-64 lg:w-80">
-      <h3 class="text-center text-lg font-semibold mb-3 text-rose-900">Semestre 7</h3>
+    <section class="semester glass rounded-2xl p-6 shadow-xl hover:shadow-2xl transition">
+      <h3 class="semester-title">Semestre 7</h3>
       <div class="course" data-id="c31">Proceso Penal</div>
       <div class="course" data-id="c32">Derecho Económico</div>
       <div class="course" data-id="c33">Derecho Comercial I</div>
@@ -133,8 +101,8 @@
     </section>
 
     <!-- ############ SEMESTRE 8 ############ -->
-    <section class="semester snap-center glass rounded-2xl p-5 w-72 flex-shrink-0 shadow-xl hover:shadow-2xl transition md:w-64 lg:w-80">
-      <h3 class="text-center text-lg font-semibold mb-3 text-rose-900">Semestre 8</h3>
+    <section class="semester glass rounded-2xl p-6 shadow-xl hover:shadow-2xl transition">
+      <h3 class="semester-title">Semestre 8</h3>
       <div class="course" data-id="c36">Multiculturalidad y Migraciones</div>
       <div class="course" data-id="c37">Taller de Litigación</div>
       <div class="course" data-id="c38">Derecho Comercial II</div>
@@ -143,8 +111,8 @@
     </section>
 
     <!-- ############ SEMESTRE 9 ############ -->
-    <section class="semester snap-center glass rounded-2xl p-5 w-72 flex-shrink-0 shadow-xl hover:shadow-2xl transition md:w-64 lg:w-80">
-      <h3 class="text-center text-lg font-semibold mb-3 text-rose-900">Semestre 9</h3>
+    <section class="semester glass rounded-2xl p-6 shadow-xl hover:shadow-2xl transition">
+      <h3 class="semester-title">Semestre 9</h3>
       <div class="course" data-id="c41">Ética</div>
       <div class="course" data-id="c42">Derecho Tributario I</div>
       <div class="course" data-id="c43">Filosofía del Derecho</div>
@@ -153,57 +121,17 @@
     </section>
 
     <!-- ############ SEMESTRE 10 ############ -->
-    <section class="semester snap-center glass rounded-2xl p-5 w-72 flex-shrink-0 shadow-xl hover:shadow-2xl transition md:w-64 lg:w-80">
-      <h3 class="text-center text-lg font-semibold mb-3 text-rose-900">Semestre 10</h3>
+    <section class="semester glass rounded-2xl p-6 shadow-xl hover:shadow-2xl transition">
+      <h3 class="semester-title">Semestre 10</h3>
       <div class="course" data-id="c46">Derecho Tributario II</div>
       <div class="course" data-id="c47">Taller de Investigación Jurídica</div>
       <div class="course" data-id="c48">Seminario Integración Derecho Público</div>
       <div class="course" data-id="c49">Clínica II</div>
     </section>
-
   </main>
-  <!-- 🧠 JS → prompt de usuario + persistencia (cookies) + toggle de ramos + confeti -->
-  <script>
-    /* ---------------- helpers de cookies ---------------- */
-    const setCookie = (name, value, days = 365) => {
-      const exp = new Date(Date.now() + days*864e5).toUTCString();
-      document.cookie = `${name}=${encodeURIComponent(value)};expires=${exp};path=/`;
-    };
-    const getCookie = name => {
-      const m = document.cookie.split('; ').find(r => r.startsWith(name+'='));
-      return m ? decodeURIComponent(m.split('=')[1]) : '';
-    };
 
-    /* ---------------- saludo inicial -------------------- */
-    let userName = getCookie('law_user');
-    if(!userName){
-      userName = prompt('¡Bienvenida/o! ¿Cómo te llamas?')?.trim() || 'Estudiante';
-      setCookie('law_user', userName);
-    }
-    document.getElementById('userHeader').textContent = `Malla Derecho – ${userName}`;
-
-    /* ---------------- estado almacenado ----------------- */
-    let passed = [];
-    try{ passed = JSON.parse(getCookie('law_passed') || '[]'); }catch(e){ passed = []; }
-
-    /* ---------------- gestor de clic -------------------- */
-    document.querySelectorAll('.course').forEach(course => {
-      const id = course.dataset.id;
-      if(passed.includes(id)) course.classList.add('passed');
-
-      course.addEventListener('click', () => {
-        const willPass = !course.classList.contains('passed');
-        course.classList.toggle('passed');
-
-        if(willPass){
-          if(!passed.includes(id)) passed.push(id);
-          confetti({ particleCount: 120, spread: 70, origin:{ y:0.6 } });
-        }else{
-          passed = passed.filter(r => r !== id);
-        }
-        setCookie('law_passed', JSON.stringify(passed));
-      });
-    });
-  </script>
+  <!-- Scripts de la app -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
