@@ -35,8 +35,13 @@
 
   <!-- Estilos extra (estado passed, glass y 3D) -->
   <style>
+    /* estado aprobado sin @apply (funciona directo en navegador) */
     .passed{
-      @apply bg-law-gray-passed text-gray-600 line-through italic shadow-inner;
+      background-color:#d1d5db; /* gray‑300 */
+      color:#4b5563;            /* gray‑600 */
+      text-decoration:line-through;
+      font-style:italic;
+      box-shadow:inset 0 0 4px rgba(0,0,0,0.1);
     }
     /* Glass effect card */
     .glass{
@@ -157,59 +162,48 @@
     </section>
 
   </main>
-  <!-- 🧠 JS → nombre, cookies, toggle de ramos & confeti --------------->
-<script>
-/* ------------------------------ utilidades cookies ----------------------------- */
-const setCookie = (name, value, days = 365) => {
-  const exp = new Date(Date.now() + days * 864e5).toUTCString();
-  document.cookie = `${name}=${encodeURIComponent(value)};expires=${exp};path=/`;
-};
-const getCookie = name =>
-  decodeURIComponent(
-    document.cookie
-      .split('; ')
-      .find(c => c.startsWith(name + '='))?.split('=')[1] || ''
-  );
+  <!-- 🧠 JS → prompt de usuario + persistencia (cookies) + toggle de ramos + confeti -->
+  <script>
+    /* ---------------- helpers de cookies ---------------- */
+    const setCookie = (name, value, days = 365) => {
+      const exp = new Date(Date.now() + days*864e5).toUTCString();
+      document.cookie = `${name}=${encodeURIComponent(value)};expires=${exp};path=/`;
+    };
+    const getCookie = name => {
+      const m = document.cookie.split('; ').find(r => r.startsWith(name+'='));
+      return m ? decodeURIComponent(m.split('=')[1]) : '';
+    };
 
-/* ------------------------------ claves constantes ------------------------------ */
-const NAME_KEY   = 'law_user';
-const PASSED_KEY = 'law_passed';
-
-/* ------------------------------ saludo inicial --------------------------------- */
-let user = getCookie(NAME_KEY);
-if (!user) {
-  user = prompt('¡Bienvenida/o! ¿Cómo te llamas?')?.trim() || 'Estudiante';
-  setCookie(NAME_KEY, user);
-}
-document.getElementById('userHeader').textContent = `Malla Derecho – ${user}`;
-
-/* ------------------------------ estado guardado -------------------------------- */
-let passed = [];
-try { passed = JSON.parse(getCookie(PASSED_KEY) || '[]'); } catch {}
-
-/* ------------------------------ gestor de clic --------------------------------- */
-document.querySelectorAll('.course').forEach(course => {
-  const id = course.dataset.id;
-
-  // pinta los aprobados almacenados
-  if (passed.includes(id)) course.classList.add('passed');
-
-  course.addEventListener('click', () => {
-    const isPassing = !course.classList.contains('passed');
-    course.classList.toggle('passed');
-
-    // actualiza lista
-    if (isPassing) {
-      if (!passed.includes(id)) passed.push(id);
-
-      // 🎉 confeti — una mini ráfaga cada aprobación
-      confetti({ particleCount: 120, spread: 70, origin: { y: 0.6 } });
-    } else {
-      passed = passed.filter(r => r !== id);
+    /* ---------------- saludo inicial -------------------- */
+    let userName = getCookie('law_user');
+    if(!userName){
+      userName = prompt('¡Bienvenida/o! ¿Cómo te llamas?')?.trim() || 'Estudiante';
+      setCookie('law_user', userName);
     }
+    document.getElementById('userHeader').textContent = `Malla Derecho – ${userName}`;
 
-    // persiste en cookie
-    setCookie(PASSED_KEY, JSON.stringify(passed));
-  });
-});
-</script>
+    /* ---------------- estado almacenado ----------------- */
+    let passed = [];
+    try{ passed = JSON.parse(getCookie('law_passed') || '[]'); }catch(e){ passed = []; }
+
+    /* ---------------- gestor de clic -------------------- */
+    document.querySelectorAll('.course').forEach(course => {
+      const id = course.dataset.id;
+      if(passed.includes(id)) course.classList.add('passed');
+
+      course.addEventListener('click', () => {
+        const willPass = !course.classList.contains('passed');
+        course.classList.toggle('passed');
+
+        if(willPass){
+          if(!passed.includes(id)) passed.push(id);
+          confetti({ particleCount: 120, spread: 70, origin:{ y:0.6 } });
+        }else{
+          passed = passed.filter(r => r !== id);
+        }
+        setCookie('law_passed', JSON.stringify(passed));
+      });
+    });
+  </script>
+</body>
+</html>
