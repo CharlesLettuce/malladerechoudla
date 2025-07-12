@@ -1,0 +1,42 @@
+/* ----- utilidades propias (más allá de Tailwind) ----- */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
+
+/* Tarjeta del semestre: ancho cómodo en móvil y escritorio */
+.semester{
+  width: 100%;
+  max-width: 20rem;           /* ~320 px */
+  min-height: 18rem;          /* evita “cuadros” enanos */
+}
+
+/* Título dentro de cada semestre */
+.semester-title{
+  @apply text-center text-lg font-semibold mb-4 text-rose-900;
+}
+
+/* Estado aprobado (no dependemos de @apply para funcionar sin procesador) */
+.passed{
+  background-color:#d1d5db;   /* gray-300 */
+  color:#4b5563;              /* gray-600 */
+  text-decoration:line-through;
+  font-style:italic;
+  box-shadow:inset 0 0 4px rgba(0,0,0,.1);
+}
+
+/* Efecto glass “rosado” */
+.glass{
+  backdrop-filter:blur(4px) saturate(150%);
+  background:rgba(255,204,217,.55);
+}
+
+/* Curso: bloque clickeable con estética uniforme */
+.course{
+  cursor:pointer;
+  padding:.4rem .6rem;
+  margin-bottom:.35rem;
+  border-radius:.375rem;      /* rounded-md */
+  transition:all .15s;
+}
+.course:hover{
+  background:rgba(255,154,179,.25); /* law-pink-dark 25 % */
+  transform:translateY(-1px);
+}
