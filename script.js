@@ -1,4 +1,3 @@
-/* ---------------- helpers de cookies ---------------- */
 const setCookie = (name, value, days = 365) => {
   const exp = new Date(Date.now() + days*864e5).toUTCString();
   document.cookie = `${name}=${encodeURIComponent(value)};expires=${exp};path=/`;
@@ -8,7 +7,6 @@ const getCookie = name => {
   return m ? decodeURIComponent(m.split('=')[1]) : '';
 };
 
-/* ---------------- saludo inicial -------------------- */
 let userName = getCookie('law_user');
 if(!userName){
   userName = prompt('¡Bienvenida/o! ¿Cómo te llamas?')?.trim() || 'Estudiante';
@@ -16,11 +14,9 @@ if(!userName){
 }
 document.getElementById('userHeader').textContent = `Malla Derecho – ${userName}`;
 
-/* ---------------- estado almacenado ----------------- */
 let passed = [];
 try{ passed = JSON.parse(getCookie('law_passed') || '[]'); }catch{ passed = []; }
 
-/* ---------------- gestor de clic -------------------- */
 document.querySelectorAll('.course').forEach(course => {
   const id = course.dataset.id;
   if(passed.includes(id)) course.classList.add('passed');
