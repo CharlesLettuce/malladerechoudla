@@ -1,4 +1,3 @@
-/* Extensión de paleta corporativa y tipografía */
 tailwind.config = {
   theme: {
     extend: {
@@ -6,7 +5,7 @@ tailwind.config = {
         "law-pink-light":  "#ffeef5",
         "law-pink-medium": "#ffccd9",
         "law-pink-dark":   "#ff9ab3",
-        "law-gray-passed": "#d1d5db"      // gray-300
+        "law-gray-passed": "#d1d5db"   
       },
       fontFamily: {
         pop: ["Poppins", "sans-serif"]
