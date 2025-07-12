@@ -24,11 +24,14 @@
           }
         }
       }
-    }
+    };
   </script>
 
   <!-- Tipografía headline -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+
+  <!-- Confetti library para celebración -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <!-- Estilos extra (estado passed, glass y 3D) -->
   <style>
@@ -154,48 +157,59 @@
     </section>
 
   </main>
+  <!-- 🧠 JS → nombre, cookies, toggle de ramos & confeti --------------->
+<script>
+/* ------------------------------ utilidades cookies ----------------------------- */
+const setCookie = (name, value, days = 365) => {
+  const exp = new Date(Date.now() + days * 864e5).toUTCString();
+  document.cookie = `${name}=${encodeURIComponent(value)};expires=${exp};path=/`;
+};
+const getCookie = name =>
+  decodeURIComponent(
+    document.cookie
+      .split('; ')
+      .find(c => c.startsWith(name + '='))?.split('=')[1] || ''
+  );
 
-  <!-- 🧠 JS → prompt de usuario + persistencia localStorage + toggle de ramos -->
-  <script>
-    // Prompt de nombre (una vez) y saludo personalizado ---------------------
-    const NAME_KEY = 'law_user';
-    let userName = localStorage.getItem(NAME_KEY);
-    if(!userName){
-      userName = prompt('¡Bienvenida/o! ¿Cómo te llamas?')?.trim();
-      if(!userName) userName = 'Estudiante';
-      localStorage.setItem(NAME_KEY, userName);
+/* ------------------------------ claves constantes ------------------------------ */
+const NAME_KEY   = 'law_user';
+const PASSED_KEY = 'law_passed';
+
+/* ------------------------------ saludo inicial --------------------------------- */
+let user = getCookie(NAME_KEY);
+if (!user) {
+  user = prompt('¡Bienvenida/o! ¿Cómo te llamas?')?.trim() || 'Estudiante';
+  setCookie(NAME_KEY, user);
+}
+document.getElementById('userHeader').textContent = `Malla Derecho – ${user}`;
+
+/* ------------------------------ estado guardado -------------------------------- */
+let passed = [];
+try { passed = JSON.parse(getCookie(PASSED_KEY) || '[]'); } catch {}
+
+/* ------------------------------ gestor de clic --------------------------------- */
+document.querySelectorAll('.course').forEach(course => {
+  const id = course.dataset.id;
+
+  // pinta los aprobados almacenados
+  if (passed.includes(id)) course.classList.add('passed');
+
+  course.addEventListener('click', () => {
+    const isPassing = !course.classList.contains('passed');
+    course.classList.toggle('passed');
+
+    // actualiza lista
+    if (isPassing) {
+      if (!passed.includes(id)) passed.push(id);
+
+      // 🎉 confeti — una mini ráfaga cada aprobación
+      confetti({ particleCount: 120, spread: 70, origin: { y: 0.6 } });
+    } else {
+      passed = passed.filter(r => r !== id);
     }
-    document.getElementById('userHeader').textContent = `Malla Derecho – ${userName}`;
 
-    // Persistencia de ramos aprobados --------------------------------------
-    const PASSED_KEY = 'law_passed';
-    let passed = JSON.parse(localStorage.getItem(PASSED_KEY) || '[]');
-
-    // Pinta los aprobados guardados ---------------------------------------
-    document.querySelectorAll('.course').forEach(c => {
-      if(passed.includes(c.dataset.id)) c.classList.add('passed');
-
-      // Handler de clic ----------------------------------------------------
-      c.addEventListener('click', () => {
-        c.classList.toggle('passed');
-        const id = c.dataset.id;
-        if(c.classList.contains('passed')){
-          if(!passed.includes(id)) passed.push(id);
-        }else{
-          passed = passed.filter(x => x !== id);
-        }
-        localStorage.setItem(PASSED_KEY, JSON.stringify(passed));
-      });
-    });
-  </script>
-
-  <!-- Utilidades reusables via @apply (menos repetición) -------------------->
-  <style>
-    .semester h3{ @apply border-b border-rose-200 pb-1; }
-    .course{
-      @apply bg-law-pink-dark text-white rounded-md px-3 py-2 mb-2 cursor-pointer select-none font-semibold shadow-lg transition active:scale-95 hover:shadow-rose-300;
-      background-image: linear-gradient(135deg, theme('colors.law-pink-dark') 0%, #ffb7cc 100%);
-    }
-  </style>
-</body>
-</html>
+    // persiste en cookie
+    setCookie(PASSED_KEY, JSON.stringify(passed));
+  });
+});
+</script>
