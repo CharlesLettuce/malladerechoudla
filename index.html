@@ -1,51 +1,62 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Malla Derecho Interactiva</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Malla Interactiva Derecho UChile</title>
+  <meta name="description" content="Explora la malla curricular interactiva de Derecho en la Universidad de Chile. Marca tus ramos aprobados, guarda tu progreso y disfruta de un diseño responsive con TailwindCSS." />
 
   <!-- Tailwind CSS (JIT CDN) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    /* Extiendo la paleta con tonos rosados coherentes */
+    /* Extensión de paleta corporativa */
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            "pink-light": "#ffeef5",
-            "pink-medium": "#ffccd9",
-            "pink-dark": "#ff9ab3"
+            "law-pink-light": "#ffeef5",
+            "law-pink-medium": "#ffccd9",
+            "law-pink-dark": "#ff9ab3",
+            "law-gray-passed": "#d1d5db" // gray‑300
+          },
+          fontFamily: {
+            pop: ['Poppins', 'sans-serif']
           }
         }
       }
-    };
+    }
   </script>
 
-  <!-- Extra para estado “aprobado” -->
+  <!-- Tipografía headline -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
+
+  <!-- Estilos extra (estado passed, glass y 3D) -->
   <style>
     .passed{
-      background:#e5e7eb;          /* gray-200 */
-      color:#4b5563!important;     /* gray-600 */
-      text-decoration:line-through;
+      @apply bg-law-gray-passed text-gray-600 line-through italic shadow-inner;
+    }
+    /* Glass effect card */
+    .glass{
+      backdrop-filter: blur(4px) saturate(150%);
+      background: rgba(255, 204, 217, 0.55);
     }
   </style>
 </head>
-<body class="bg-pink-light min-h-screen text-[15px] sm:text-base">
-
-  <!-- Cabecera (cambia al saludo personal) -->
-  <header id="userHeader"
-          class="w-full text-center bg-pink-medium py-4 text-xl font-bold shadow-md sticky top-0 z-10">
+<body class="bg-law-pink-light min-h-screen text-[15px] sm:text-base font-sans">
+  <!-- ☝️ Cabecera con saludo personalizado -->
+  <header id="userHeader" class="sticky top-0 z-10 w-full text-center bg-law-pink-medium py-4 text-2xl font-pop font-bold shadow-lg">
     Malla Derecho
   </header>
 
-  <!-- Contenedor de semestres: scroll X en móvil, wrap en ≥md -->
-  <main class="flex gap-4 p-4 overflow-x-auto scroll-smooth snap-x snap-mandatory
-               md:flex-wrap md:justify-center">
+  <!-- 📚 Contenedor principal (scroll horizontal en móvil, wrap en desktop) -->
+  <main class="flex gap-6 p-6 overflow-x-auto scroll-smooth snap-x snap-mandatory md:flex-wrap md:justify-center">
 
-    <!-- ————————————————— SEMESTRE 1 ————————————————— -->
-    <section class="semester">
-      <h3 class="sem-title">Semestre 1</h3>
+    <!-- ========== Semestres ========== -->
+    <!-- Helper para generar columnas: cada .semester contiene cursos -->
+
+    <!-- ############ SEMESTRE 1 ############ -->
+    <section class="semester snap-center glass rounded-2xl p-5 w-72 flex-shrink-0 shadow-xl hover:shadow-2xl transition md:w-64 lg:w-80">
+      <h3 class="text-center text-lg font-semibold mb-3 text-rose-900">Semestre 1</h3>
       <div class="course" data-id="c1">Taller de Escritura</div>
       <div class="course" data-id="c2">Derecho Político</div>
       <div class="course" data-id="c3">Introducción al Derecho Privado</div>
@@ -53,9 +64,9 @@
       <div class="course" data-id="c5">Introducción al Derecho</div>
     </section>
 
-    <!-- ————————————————— SEMESTRE 2 ————————————————— -->
-    <section class="semester">
-      <h3 class="sem-title">Semestre 2</h3>
+    <!-- ############ SEMESTRE 2 ############ -->
+    <section class="semester snap-center glass rounded-2xl p-5 w-72 flex-shrink-0 shadow-xl hover:shadow-2xl transition md:w-64 lg:w-80">
+      <h3 class="text-center text-lg font-semibold mb-3 text-rose-900">Semestre 2</h3>
       <div class="course" data-id="c6">Expresión Oral y Argumentación</div>
       <div class="course" data-id="c7">Políticas de Equidad y Género</div>
       <div class="course" data-id="c8">Derecho Constitucional Orgánico</div>
@@ -63,9 +74,9 @@
       <div class="course" data-id="c10">Historia Institucional de Chile</div>
     </section>
 
-    <!-- ————————————————— SEMESTRE 3 ————————————————— -->
-    <section class="semester">
-      <h3 class="sem-title">Semestre 3</h3>
+    <!-- ############ SEMESTRE 3 ############ -->
+    <section class="semester snap-center glass rounded-2xl p-5 w-72 flex-shrink-0 shadow-xl hover:shadow-2xl transition md:w-64 lg:w-80">
+      <h3 class="text-center text-lg font-semibold mb-3 text-rose-900">Semestre 3</h3>
       <div class="course" data-id="c11">Sustentabilidad y Medio Ambiente</div>
       <div class="course" data-id="c12">Introducción a la Economía</div>
       <div class="course" data-id="c13">Derechos Fundamentales</div>
@@ -73,9 +84,9 @@
       <div class="course" data-id="c15">Fundamentos del Derecho Procesal</div>
     </section>
 
-    <!-- ————————————————— SEMESTRE 4 ————————————————— -->
-    <section class="semester">
-      <h3 class="sem-title">Semestre 4</h3>
+    <!-- ############ SEMESTRE 4 ############ -->
+    <section class="semester snap-center glass rounded-2xl p-5 w-72 flex-shrink-0 shadow-xl hover:shadow-2xl transition md:w-64 lg:w-80">
+      <h3 class="text-center text-lg font-semibold mb-3 text-rose-900">Semestre 4</h3>
       <div class="course" data-id="c16">Fund. Derecho Penal y Teoría del Delito</div>
       <div class="course" data-id="c17">Acciones Constitucionales</div>
       <div class="course" data-id="c18">Derecho Administrativo I</div>
@@ -83,9 +94,9 @@
       <div class="course" data-id="c20">Normas Comunes a todo Procedimiento</div>
     </section>
 
-    <!-- ————————————————— SEMESTRE 5 ————————————————— -->
-    <section class="semester">
-      <h3 class="sem-title">Semestre 5</h3>
+    <!-- ############ SEMESTRE 5 ############ -->
+    <section class="semester snap-center glass rounded-2xl p-5 w-72 flex-shrink-0 shadow-xl hover:shadow-2xl transition md:w-64 lg:w-80">
+      <h3 class="text-center text-lg font-semibold mb-3 text-rose-900">Semestre 5</h3>
       <div class="course" data-id="c21">Participación Criminal y Penal</div>
       <div class="course" data-id="c22">Derecho del Trabajo I</div>
       <div class="course" data-id="c23">Derecho Administrativo II</div>
@@ -93,9 +104,9 @@
       <div class="course" data-id="c25">Procedimientos Civiles</div>
     </section>
 
-    <!-- ————————————————— SEMESTRE 6 ————————————————— -->
-    <section class="semester">
-      <h3 class="sem-title">Semestre 6</h3>
+    <!-- ############ SEMESTRE 6 ############ -->
+    <section class="semester snap-center glass rounded-2xl p-5 w-72 flex-shrink-0 shadow-xl hover:shadow-2xl transition md:w-64 lg:w-80">
+      <h3 class="text-center text-lg font-semibold mb-3 text-rose-900">Semestre 6</h3>
       <div class="course" data-id="c26">Estudio de los Delitos</div>
       <div class="course" data-id="c27">Derecho del Trabajo II</div>
       <div class="course" data-id="c28">Derecho Internacional Público</div>
@@ -103,9 +114,9 @@
       <div class="course" data-id="c30">Recursos Procesales y Juicio Ejecutivo</div>
     </section>
 
-    <!-- ————————————————— SEMESTRE 7 ————————————————— -->
-    <section class="semester">
-      <h3 class="sem-title">Semestre 7</h3>
+    <!-- ############ SEMESTRE 7 ############ -->
+    <section class="semester snap-center glass rounded-2xl p-5 w-72 flex-shrink-0 shadow-xl hover:shadow-2xl transition md:w-64 lg:w-80">
+      <h3 class="text-center text-lg font-semibold mb-3 text-rose-900">Semestre 7</h3>
       <div class="course" data-id="c31">Proceso Penal</div>
       <div class="course" data-id="c32">Derecho Económico</div>
       <div class="course" data-id="c33">Derecho Comercial I</div>
@@ -113,9 +124,9 @@
       <div class="course" data-id="c35">Solución Alternativa de Conflictos</div>
     </section>
 
-    <!-- ————————————————— SEMESTRE 8 ————————————————— -->
-    <section class="semester">
-      <h3 class="sem-title">Semestre 8</h3>
+    <!-- ############ SEMESTRE 8 ############ -->
+    <section class="semester snap-center glass rounded-2xl p-5 w-72 flex-shrink-0 shadow-xl hover:shadow-2xl transition md:w-64 lg:w-80">
+      <h3 class="text-center text-lg font-semibold mb-3 text-rose-900">Semestre 8</h3>
       <div class="course" data-id="c36">Multiculturalidad y Migraciones</div>
       <div class="course" data-id="c37">Taller de Litigación</div>
       <div class="course" data-id="c38">Derecho Comercial II</div>
@@ -123,9 +134,9 @@
       <div class="course" data-id="c40">Procedimientos de Familia</div>
     </section>
 
-    <!-- ————————————————— SEMESTRE 9 ————————————————— -->
-    <section class="semester">
-      <h3 class="sem-title">Semestre 9</h3>
+    <!-- ############ SEMESTRE 9 ############ -->
+    <section class="semester snap-center glass rounded-2xl p-5 w-72 flex-shrink-0 shadow-xl hover:shadow-2xl transition md:w-64 lg:w-80">
+      <h3 class="text-center text-lg font-semibold mb-3 text-rose-900">Semestre 9</h3>
       <div class="course" data-id="c41">Ética</div>
       <div class="course" data-id="c42">Derecho Tributario I</div>
       <div class="course" data-id="c43">Filosofía del Derecho</div>
@@ -133,9 +144,9 @@
       <div class="course" data-id="c45">Clínica I</div>
     </section>
 
-    <!-- ————————————————— SEMESTRE 10 ————————————————— -->
-    <section class="semester">
-      <h3 class="sem-title">Semestre 10</h3>
+    <!-- ############ SEMESTRE 10 ############ -->
+    <section class="semester snap-center glass rounded-2xl p-5 w-72 flex-shrink-0 shadow-xl hover:shadow-2xl transition md:w-64 lg:w-80">
+      <h3 class="text-center text-lg font-semibold mb-3 text-rose-900">Semestre 10</h3>
       <div class="course" data-id="c46">Derecho Tributario II</div>
       <div class="course" data-id="c47">Taller de Investigación Jurídica</div>
       <div class="course" data-id="c48">Seminario Integración Derecho Público</div>
@@ -144,61 +155,46 @@
 
   </main>
 
-  <!-- 🍪 JS: manejo de usuario + cookies + toggle de ramos -->
+  <!-- 🧠 JS → prompt de usuario + persistencia localStorage + toggle de ramos -->
   <script>
-    // ── helpers de cookies ────────────────────────────────────────────────────
-    function setCookie (name, value, days = 365){
-      const exp = new Date(Date.now() + days*864e5).toUTCString();
-      document.cookie = name + '=' + encodeURIComponent(value) +
-                        '; expires=' + exp + '; path=/';
+    // Prompt de nombre (una vez) y saludo personalizado ---------------------
+    const NAME_KEY = 'law_user';
+    let userName = localStorage.getItem(NAME_KEY);
+    if(!userName){
+      userName = prompt('¡Bienvenida/o! ¿Cómo te llamas?')?.trim();
+      if(!userName) userName = 'Estudiante';
+      localStorage.setItem(NAME_KEY, userName);
     }
-    function getCookie (name){
-      return document.cookie.split('; ').find(c => c.startsWith(name+'='))?.split('=')[1];
-    }
+    document.getElementById('userHeader').textContent = `Malla Derecho – ${userName}`;
 
-    // ── carga inicial ─────────────────────────────────────────────────────────
-    const userHeader = document.getElementById('userHeader');
-    let user = getCookie('law_user');
-    if(!user){
-      user = prompt('¿Cómo te llamas?');      // primera visita
-      if(user) setCookie('law_user', user);
-    }
-    if(user) userHeader.textContent = `Malla Derecho – ${user}`;
+    // Persistencia de ramos aprobados --------------------------------------
+    const PASSED_KEY = 'law_passed';
+    let passed = JSON.parse(localStorage.getItem(PASSED_KEY) || '[]');
 
-    // ramos aprobados guardados
-    let passed = JSON.parse(decodeURIComponent(getCookie('law_passed')||'[]'));
+    // Pinta los aprobados guardados ---------------------------------------
+    document.querySelectorAll('.course').forEach(c => {
+      if(passed.includes(c.dataset.id)) c.classList.add('passed');
 
-    // ── manejo de clic en cada ramo ───────────────────────────────────────────
-    document.querySelectorAll('.course').forEach(el=>{
-      const id = el.dataset.id;
-      if(passed.includes(id)) el.classList.add('passed');
-
-      el.addEventListener('click', ()=>{
-        el.classList.toggle('passed');
-        if(el.classList.contains('passed')){
-          passed.push(id);
+      // Handler de clic ----------------------------------------------------
+      c.addEventListener('click', () => {
+        c.classList.toggle('passed');
+        const id = c.dataset.id;
+        if(c.classList.contains('passed')){
+          if(!passed.includes(id)) passed.push(id);
         }else{
-          passed = passed.filter(x=>x!==id);
+          passed = passed.filter(x => x !== id);
         }
-        setCookie('law_passed', JSON.stringify(passed));
+        localStorage.setItem(PASSED_KEY, JSON.stringify(passed));
       });
     });
-
   </script>
 
-  <!-- utilidades compactas -->
+  <!-- Utilidades reusables via @apply (menos repetición) -------------------->
   <style>
-    /* wrappers comunes centralizados aquí para evitar repetir clases */
-    .semester{
-      @apply bg-pink-medium rounded-xl p-4 w-64 flex-shrink-0
-             shadow-md snap-center md:w-60 lg:w-72;
-    }
-    .sem-title{
-      @apply text-center font-semibold mb-2;
-    }
+    .semester h3{ @apply border-b border-rose-200 pb-1; }
     .course{
-      @apply bg-pink-dark text-white rounded-md p-2 mb-2 cursor-pointer
-             transition hover:scale-[1.03] focus:outline-none;
+      @apply bg-law-pink-dark text-white rounded-md px-3 py-2 mb-2 cursor-pointer select-none font-semibold shadow-lg transition active:scale-95 hover:shadow-rose-300;
+      background-image: linear-gradient(135deg, theme('colors.law-pink-dark') 0%, #ffb7cc 100%);
     }
   </style>
 </body>
